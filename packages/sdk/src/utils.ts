@@ -13,3 +13,4 @@ const parseName = (name, defaultStyle) => {
 module.exports = {
   parseName
 };
+export {}

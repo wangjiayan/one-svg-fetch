@@ -1,5 +1,9 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var upperCamelCase = require('uppercamelcase');
 
 var parseName = function parseName(name, defaultStyle) {

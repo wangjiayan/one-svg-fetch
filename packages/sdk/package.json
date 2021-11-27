@@ -18,9 +18,16 @@
   },
   "scripts": {
     "clear": "rimraf ./dist && rimraf ./libs",
+    "compile:typings": "tsc --project ./tsconfig.typings.json --outDir ./libs --declaration",
+    "compile:code": "yarn clear && cross-env npx babel ./src --config-file ./.babelrc.js --out-dir libs --extensions .ts",
+    "compile": "concurrently \"yarn compile:code\" \"yarn compile:typings\"",
+    "watch:compile:code": "cross-env npx babel ./src --config-file ./.babelrc.js --out-dir libs --extensions .ts --skip-initial-build --watch",
+    "watch:compile:typings": "tsc --project ./tsconfig.typings.json --outDir ./libs --declaration --watch",
+    "watch:compile": "concurrently \"yarn watch:compile:code\" \"yarn watch:compile:typings\"",
     "fetch": "node test/fetchSVG.js",
-    "test": "echo \"Error: run tests from root\" && exit 1",
-    "compile": "yarn clear && cross-env npx babel ./src --config-file ./.babelrc.js --out-dir libs --extensions .js"
+    "start": "yarn watch:compile",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
@@ -32,6 +39,7 @@
     "@babel/plugin-transform-typescript": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
+    "@types/node": "^16.11.10",
     "babel-plugin-transform-define": "^2.0.0"
   },
   "dependencies": {

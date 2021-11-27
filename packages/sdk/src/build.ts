@@ -5,18 +5,18 @@ const fs = require('fs')
 const format = require('prettier-eslint')
 const processSvg = require('./processSvg')
 const { parseName } = require('./utils')
-const defaultStyle = process.env.npm_package_config_style || 'stroke'
-// const { getAttrs, getElementCode } = require('./template')
-const icons = require('../src/data.json')
+const defaultStyle =  'stroke'
 
-const rootDir = path.join(__dirname, '..')
 
-// where icons code in
-const srcDir = path.join(rootDir, 'src')
-const iconsDir = path.join(rootDir, 'src/icons')
-function process(opt){
-  const {componentTpl:getElementCode} = opt
-// generate icons.js and icons.d.ts file
+function generateSvg(options){
+  const {outputDir,componentTpl:getElementCode} = options
+  const iconsMap = require(path.join(outputDir, 'data.json'))
+  const srcDir = path.join(outputDir)
+  const iconsDir = path.join(outputDir, 'icons')
+
+/**
+ * 生成 icons.js 和 icons.d.ts 文件
+ *  */
 const generateIconsIndex = () => {
   if (!fs.existsSync(srcDir)) {
     fs.mkdirSync(srcDir)
@@ -36,83 +36,72 @@ const generateIconsIndex = () => {
   type Icon = ComponentType<Props>;
   `
 
-  fs.writeFileSync(path.join(rootDir, 'src', 'icons.js'), '', 'utf-8')
+  fs.writeFileSync(path.join(srcDir, 'icons.js'), '', 'utf-8')
   fs.writeFileSync(
-    path.join(rootDir, 'src', 'icons.d.ts'),
+    path.join(srcDir,'icons.d.ts'),
     initialTypeDefinitions,
     'utf-8'
   )
 }
 
-// generate attributes code
-const attrsToString = (attrs, style) => {
-  return Object.keys(attrs)
-    .map((key) => {
-      // should distinguish fill or stroke
-      if (key === 'width' || key === 'height' || key === style) {
-        return key + '={' + attrs[key] + '}'
-      }
-      if (key === 'otherProps') {
-        return '{...otherProps}'
-      }
-      return key + '="' + attrs[key] + '"'
-    })
-    .join(' ')
-}
-
 // generate icon code separately
 const generateIconCode = async ({ name }) => {
   const names = parseName(name, defaultStyle)
-  console.log(names)
-  const location = path.join(rootDir, 'src/svg', `${names.name}.svg`)
-  const destination = path.join(rootDir, 'src/icons', `${names.name}.js`)
+  const location = path.join(srcDir, 'svg', `${names.name}.svg`)
+  const destination = path.join(srcDir, 'icons', `${names.name}.js`)
   const code = fs.readFileSync(location)
   const svgCode = await processSvg(code)
   const ComponentName = names.componentName
+
   const element = getElementCode(
     ComponentName,
-    // attrsToString(getAttrs(names.style), names.style),
     svgCode
   )
-  const component = format({
-    text: element,
-    eslintConfig: {
-      extends: 'airbnb'
-    },
-    prettierOptions: {
-      bracketSpacing: true,
-      singleQuote: true,
-      parser: 'flow'
-    }
-  })
+  try{
+    const component = format({
+      text: element,
+      eslintConfig: {
+        extends: 'airbnb'
+      },
+      prettierOptions: {
+        bracketSpacing: true,
+        singleQuote: true,
+        parser: 'flow'
+      }
+    })
+    fs.writeFileSync(destination, element, 'utf-8')
+    console.log('Successfully built', ComponentName)
+    return { ComponentName, name: names.name }
+  }catch(err){
+    console.log('err',err)
+  }
 
-  fs.writeFileSync(destination, component, 'utf-8')
 
-  console.log('Successfully built', ComponentName)
-  return { ComponentName, name: names.name }
 }
 
 // append export code to icons.js
 const appendToIconsIndex = ({ ComponentName, name }) => {
   const exportString = `export { default as ${ComponentName} } from './icons/${name}';\r\n`
   fs.appendFileSync(
-    path.join(rootDir, 'src', 'icons.js'),
+    path.join(srcDir, 'icons.js'),
     exportString,
     'utf-8'
   )
 
   const exportTypeString = `export const ${ComponentName}: Icon;\n`
   fs.appendFileSync(
-    path.join(rootDir, 'src', 'icons.d.ts'),
+    path.join(srcDir, 'icons.d.ts'),
     exportTypeString,
     'utf-8'
   )
 }
 
 
-
+/**
+ * 检查组件名重复
+ */
 const checkDuplication = () => {
-  const nameVols = Object.values(icons).map((item) => item.name)
+  const nameVols = Object.values(iconsMap).map((item) => item?.name)
   const nameUniqVols = [...new Set(nameVols)]
   if (nameVols.length !== nameUniqVols.length) {
     throw 'icons存在重复命名,请检查后重试'
@@ -121,8 +110,8 @@ const checkDuplication = () => {
 
   generateIconsIndex()
   checkDuplication()
-  Object.keys(icons)
-    .map((key) => icons[key])
+  Object.keys(iconsMap)
+    .map((key) => iconsMap[key])
     .forEach(({ name }) => {
       generateIconCode({ name }).then(({ ComponentName, name }) => {
         appendToIconsIndex({ ComponentName, name })
@@ -130,4 +119,4 @@ const checkDuplication = () => {
     })
 }
 
-module.exports = process
+module.exports = generateSvg

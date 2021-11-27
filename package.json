@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "commit": "git-cz",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"lerna run start --scope=sdk",
+    "compile":"lerna run compile --scope=sdk",
+    "example":"lerna run fetch --scope=example"
   },
   "hooks": {
     "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
@@ -23,6 +26,7 @@
     ]
   },
   "dependencies": {
+    "@types/node": "^16.11.10",
     "lerna": "^4.0.0",
     "normalize.css": "^8.0.1"
   },
@@ -30,6 +34,7 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.16.0",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@commitlint/cli": "^13.2.1",

@@ -185,10 +185,10 @@ var fetchSvg = /*#__PURE__*/function () {
   };
 }();
 
-function queueTasks(tasks, options) {
+function queueTasks(tasks) {
   var queue = new PQueue(Object.assign({
     concurrency: 3
-  }, options));
+  }));
 
   var _iterator2 = _createForOfIteratorHelper(tasks),
       _step2;

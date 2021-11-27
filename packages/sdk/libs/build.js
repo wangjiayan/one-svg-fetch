@@ -22,16 +22,19 @@ var processSvg = require('./processSvg');
 var _require = require('./utils'),
     parseName = _require.parseName;
 
-var defaultStyle = 'stroke'; // where icons code in
+var defaultStyle = 'stroke';
 
-function process(options) {
+function generateSvg(options) {
   var outputDir = options.outputDir,
       getElementCode = options.componentTpl;
 
-  var icons = require(path.join(outputDir, 'data.json'));
+  var iconsMap = require(path.join(outputDir, 'data.json'));
 
   var srcDir = path.join(outputDir);
-  var iconsDir = path.join(outputDir, 'icons'); // generate icons.js and icons.d.ts file
+  var iconsDir = path.join(outputDir, 'icons');
+  /**
+   * 生成 icons.js 和 icons.d.ts 文件
+   *  */
 
   var generateIconsIndex = function generateIconsIndex() {
     if (!fs.existsSync(srcDir)) {
@@ -44,22 +47,6 @@ function process(options) {
     var initialTypeDefinitions = "/// <reference types=\"react\" />\n  import { ComponentType, SVGAttributes } from 'react';\n\n  interface Props extends SVGAttributes<SVGElement> {\n    color?: string;\n    size?: string | number;\n  }\n\n  type Icon = ComponentType<Props>;\n  ";
     fs.writeFileSync(path.join(srcDir, 'icons.js'), '', 'utf-8');
     fs.writeFileSync(path.join(srcDir, 'icons.d.ts'), initialTypeDefinitions, 'utf-8');
-  }; // generate attributes code
-
-
-  var attrsToString = function attrsToString(attrs, style) {
-    return Object.keys(attrs).map(function (key) {
-      // should distinguish fill or stroke
-      if (key === 'width' || key === 'height' || key === style) {
-        return key + '={' + attrs[key] + '}';
-      }
-
-      if (key === 'otherProps') {
-        return '{...otherProps}';
-      }
-
-      return key + '="' + attrs[key] + '"';
-    }).join(' ');
   }; // generate icon code separately
 
 
@@ -80,11 +67,9 @@ function process(options) {
 
             case 7:
               svgCode = _context.sent;
-              ComponentName = names.componentName; // console.log('ComponentName',ComponentName)
-
+              ComponentName = names.componentName;
               element = getElementCode(ComponentName, svgCode);
-              console.log('element', element);
-              _context.prev = 11;
+              _context.prev = 10;
               component = format({
                 text: element,
                 eslintConfig: {
@@ -103,17 +88,17 @@ function process(options) {
                 name: names.name
               });
 
-            case 18:
-              _context.prev = 18;
-              _context.t0 = _context["catch"](11);
+            case 17:
+              _context.prev = 17;
+              _context.t0 = _context["catch"](10);
               console.log('err', _context.t0);
 
-            case 21:
+            case 20:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[11, 18]]);
+      }, _callee, null, [[10, 17]]);
     }));
 
     return function generateIconCode(_x) {
@@ -136,8 +121,8 @@ function process(options) {
 
 
   var checkDuplication = function checkDuplication() {
-    var nameVols = Object.values(icons).map(function (item) {
-      return item.name;
+    var nameVols = Object.values(iconsMap).map(function (item) {
+      return item === null || item === void 0 ? void 0 : item.name;
     });
     var nameUniqVols = (0, _toConsumableArray2["default"])(new Set(nameVols));
 
@@ -148,8 +133,8 @@ function process(options) {
 
   generateIconsIndex();
   checkDuplication();
-  Object.keys(icons).map(function (key) {
-    return icons[key];
+  Object.keys(iconsMap).map(function (key) {
+    return iconsMap[key];
   }).forEach(function (_ref4) {
     var name = _ref4.name;
     generateIconCode({
@@ -165,4 +150,4 @@ function process(options) {
   });
 }
 
-module.exports = process;
+module.exports = generateSvg;

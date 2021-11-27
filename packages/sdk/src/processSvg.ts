@@ -45,11 +45,11 @@ function removeSVGElement(svg) {
  * @param {string} svg - An SVG string.
  * @param {Promise<string>}
  */
-async function processSvg(svg) {
+async function processSvg(svg:string) {
   const optimized = await optimize(svg)
     // remove semicolon inserted by prettier
     // because prettier thinks it's formatting JSX not HTML
-    .then((svg) => svg.replace(/;/g, ''))
+    .then((svg:string) => svg.replace(/;/g, ''))
     .then(removeSVGElement)
     .then((svg) =>
       svg.replace(/([a-z]+)-([a-z]+)=/g, (_, a, b) => `${a}${CamelCase(b)}=`)
@@ -58,3 +58,4 @@ async function processSvg(svg) {
 }
 
 module.exports = processSvg
+export {}

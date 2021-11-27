@@ -5,10 +5,7 @@ const Figma = require('figma-js')
 const PQueue = require('p-queue')
 require('dotenv').config()
 
-
-
-
-module.exports = fetchSvg =async (options)=>{
+const fetchSvg = async (options)=>{
   const {figmaToke:FIGMA_TOKEN, figmaFileUrl:FIGMA_FILE_URL } = options
   for(const arg of process.argv.slice(2)) {
     const [param, value] = arg.split('=')
@@ -39,7 +36,6 @@ module.exports = fetchSvg =async (options)=>{
     .then(({ data }) => {
       console.log('Processing response')
       const components = {}
-  
       function check(c) {
         if (c.type === 'COMPONENT') {
           const {name, id} = c
@@ -114,11 +110,12 @@ module.exports = fetchSvg =async (options)=>{
 }
 
 
-function queueTasks(tasks, options) {
-  const queue = new PQueue(Object.assign({concurrency: 3}, options))
+function queueTasks(tasks) {
+  const queue = new PQueue(Object.assign({concurrency: 3}))
   for (const task of tasks) {
     queue.add(task)
   }
   queue.start()
   return queue.onIdle()
 }
+module.exports = fetchSvg
