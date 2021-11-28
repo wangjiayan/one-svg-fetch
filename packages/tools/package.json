@@ -20,10 +20,10 @@
     "clear": "rimraf ./dist && rimraf ./libs",
     "compile:typings": "tsc --project ./tsconfig.typings.json --outDir ./libs --declaration",
     "compile:code": "yarn clear && cross-env npx babel ./src --config-file ./.babelrc.js --out-dir libs --extensions .ts",
-    "compile": "concurrently \"yarn compile:code\" \"yarn compile:typings\"",
+    "compile": "concurrently \"yarn compile:code\"",
     "watch:compile:code": "cross-env npx babel ./src --config-file ./.babelrc.js --out-dir libs --extensions .ts --skip-initial-build --watch",
     "watch:compile:typings": "tsc --project ./tsconfig.typings.json --outDir ./libs --declaration --watch",
-    "watch:compile": "concurrently \"yarn watch:compile:code\" \"yarn watch:compile:typings\"",
+    "watch:compile": "concurrently \"yarn watch:compile:code\"",
     "fetch": "node test/fetchSVG.js",
     "start": "yarn watch:compile",
     "test": "echo \"Error: run tests from root\" && exit 1"

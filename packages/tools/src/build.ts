@@ -120,3 +120,5 @@ const checkDuplication = () => {
 }
 
 module.exports = generateSvg
+
+export {}

@@ -13,7 +13,7 @@
     // 指定 jsx 代码的生成
     "jsx": "react",
     // 导出 d.ts 文件
-    "declaration": false,
+    "declaration": true,
     // 生成 sourceMap
     "sourceMap": true,
     // 删除注释
