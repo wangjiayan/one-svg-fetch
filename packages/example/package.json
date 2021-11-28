@@ -22,6 +22,6 @@
     "fetch": "node bin/fetchSVG.js"
   },
   "dependencies": {
-    "sdk": "^0.0.2-alpha.0"
+    "tool": "^0.0.2-alpha.0"
   }
 }

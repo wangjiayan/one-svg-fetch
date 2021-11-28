@@ -6,8 +6,8 @@
   "scripts": {
     "commit": "git-cz",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"lerna run start --scope=sdk",
-    "compile":"lerna run compile --scope=sdk",
+    "start":"lerna run start --scope=tools",
+    "compile":"lerna run compile --scope=tool",
     "example":"lerna run fetch --scope=example"
   },
   "hooks": {

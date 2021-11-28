@@ -1,5 +1,5 @@
 'use strict';
-const sdk = require('sdk')
+const fetcher = require('tool')
 const path = require('path');
 
 const getElementCode = require('./template')
@@ -14,6 +14,6 @@ function fetch() {
     componentTpl: getElementCode
 
   }
-  sdk(options)
+  fetcher(options)
 }
 fetch()

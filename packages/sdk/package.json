@@ -43,5 +43,6 @@
   },
   "dependencies": {
     "cross-env": "^7.0.3"
-  }
+  },
+  "gitHead": "4ced7e8060b1c9d23111f2f9afcf2eee2f3f8747"
 }
