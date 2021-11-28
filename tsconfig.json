@@ -88,7 +88,7 @@
     "emitDecoratorMetadata": true
   },
   // 包含文件
-  "include": ["**/*.ts", "**/*.tsx", "**/*.d.ts", "lib/index.js"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.d.ts", "lib/index.js", "packages/biz-demo/build/webpack.product.config.js", "packages/biz-demo/build/webpack.develop.config.js", "packages/biz-demo/build/webpack.common.config.js", "packages/biz-demo/build/constants/conf.js"],
   // 排除文件
   "exclude": ["node_modules"]
 }

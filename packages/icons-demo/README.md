@@ -1,6 +1,6 @@
 # `example`
 
-> TODO: description
+> 一个从figma拉取SVG，自动生成SVG React 组件库的工具
 
 ## Usage
 

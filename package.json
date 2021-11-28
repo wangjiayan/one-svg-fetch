@@ -6,9 +6,9 @@
   "scripts": {
     "commit": "git-cz",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"lerna run start --scope=tools",
-    "compile":"lerna run compile --scope=tool",
-    "example":"lerna run fetch --scope=example"
+    "start":"lerna run start --scope=one-svg-tool",
+    "compile":"lerna run compile --scope=one-svg-tool",
+    "example":"lerna run fetch --scope=one-svg-tool-example"
   },
   "hooks": {
     "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
