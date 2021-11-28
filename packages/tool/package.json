@@ -1,5 +1,5 @@
 {
-  "name": "tool",
+  "name": "one-svg-tool",
   "version": "0.0.2-alpha.0",
   "description": "> TODO: description",
   "author": "wangjiayan <765390818@qq.com>",
@@ -50,5 +50,6 @@
   },
   "bugs": {
     "url": "https://github.com/wangjiayan/one-svg-feth/issues"
-  }
+  },
+  "gitHead": "5b37aec986a223e36632db2bb4e15338287974ba"
 }
