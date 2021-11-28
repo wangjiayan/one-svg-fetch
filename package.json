@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "一个从figma上拉取icon的工具",
   "main": "index.js",
+  "homepage": "https://wangjiayan.github.io/one-svg-fetch/",
   "scripts": {
     "commit": "git-cz",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"lerna run start --scope=one-svg-tool",
-    "compile":"lerna run compile --scope=one-svg-tool",
-    "example":"lerna run fetch --scope=one-svg-tool-example"
+    "start": "lerna run start --scope=one-svg-tool",
+    "compile": "lerna run compile --scope=one-svg-tool",
+    "example": "lerna run fetch --scope=one-svg-tool-example",
+    "docs:serve": "dumi dev",
+    "docs:build": "dumi build"
   },
   "hooks": {
     "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
@@ -49,6 +52,7 @@
     "concurrently": "^4.1.1",
     "cz-conventional-changelog": "^3.3.0",
     "dotenv": "^8.2.0",
+    "dumi": "^1.1.32",
     "eslint": "^7.11.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",
