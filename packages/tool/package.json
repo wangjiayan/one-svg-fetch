@@ -5,7 +5,7 @@
   "author": "wangjiayan <765390818@qq.com>",
   "homepage": "https://github.com/wangjiayan/one-svg-feth#readme",
   "license": "ISC",
-  "main": "lib/tool.js",
+  "main": "libs/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -14,7 +14,7 @@
     "lib"
   ],
   "publishConfig": {
-    "registry": "https://registry.yarnpkg.com/"
+    "registry": "https://npm.pkg.github.com/"
   },
   "repository": {
     "type": "git",
@@ -51,5 +51,5 @@
   "bugs": {
     "url": "https://github.com/wangjiayan/one-svg-feth/issues"
   },
-  "gitHead": "5b37aec986a223e36632db2bb4e15338287974ba"
+  "gitHead": "7e60ecf557c1f284d611a45309ff534c2fc076ec"
 }
