@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "description": "> TODO: description",
   "author": "wangjiayan <765390818@qq.com>",
   "homepage": "",
@@ -22,6 +22,6 @@
     "fetch": "node bin/fetchSVG.js"
   },
   "dependencies": {
-    "sdk": "^0.0.0"
+    "sdk": "^0.0.1-alpha.0"
   }
 }
