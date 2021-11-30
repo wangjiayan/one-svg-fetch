@@ -1,0 +1,45 @@
+{
+  "name": "one-ions-cli",
+  "version": "0.0.3-alpha.0",
+  "description": "用于生成组件库的脚手架",
+  "keywords": [
+    "icons",
+    "svg",
+    "cli"
+  ],
+  "author": "wangjiayan <765390818@qq.com>",
+  "homepage": "https://wangjiayan.github.io/one-svg-fetch/tree/main/packages/one-ions-cli#readme",
+  "license": "ISC",
+  "main": "index.js",
+  "bin": {
+    "create-icons": "./bin/index.js"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.yarnpkg.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangjiayan/one-svg-feth.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/wangjiayan/one-svg-feth/issues"
+  },
+  "devDependencies": {
+    "chalk": "^5.0.0",
+    "commander": "^8.3.0"
+  },
+  "dependencies": {
+    "fs-extra": "^10.0.0",
+    "inquirer": "^8.2.0"
+  }
+}
