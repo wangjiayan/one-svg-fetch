@@ -58,4 +58,3 @@ async function processSvg(svg) {
 }
 
 module.exports = processSvg
-export {}
