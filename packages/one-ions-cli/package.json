@@ -41,5 +41,6 @@
   "dependencies": {
     "fs-extra": "^10.0.0",
     "inquirer": "^8.2.0"
-  }
+  },
+  "gitHead": "9c65801790aacb709ca75d77002db5540d8d476a"
 }

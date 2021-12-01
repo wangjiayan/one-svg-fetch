@@ -88,7 +88,7 @@
     "emitDecoratorMetadata": true
   },
   // 包含文件
-  "include": ["**/*.ts", "**/*.tsx", "**/*.d.ts", "libs/index.js"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.d.ts", "libs/index.js", "src/utils.js", "src/index.js", "src/processSvg.js", "src/fetchSVG.js", "src/build.js"],
   // 排除文件
   "exclude": ["node_modules"]
 }

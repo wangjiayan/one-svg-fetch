@@ -5,7 +5,7 @@
   "author": "wangjiayan <765390818@qq.com>",
   "homepage": "https://github.com/wangjiayan/one-svg-feth#readme",
   "license": "ISC",
-  "main": "libs/index.js",
+  "main": "dist/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -18,6 +18,7 @@
     "url": "git+https://github.com/wangjiayan/one-svg-feth.git"
   },
   "scripts": {
+    "build:bundle": "sudo rm -rf dist && node_modules/.bin/rollup --c ./build/rollup.config.bundle.js",
     "clear": "rimraf ./dist && rimraf ./libs",
     "compile:typings": "tsc --project ./tsconfig.typings.json --outDir ./libs --declaration",
     "compile:code": "yarn clear && cross-env npx babel ./src --config-file ./.babelrc.js --out-dir libs --extensions .ts",
@@ -40,7 +41,13 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/preset-typescript": "^7.12.1",
     "@types/node": "^16.11.10",
-    "babel-plugin-transform-define": "^2.0.0"
+    "babel-plugin-transform-define": "^2.0.0",
+    "rollup": "^1.19.4",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-postcss": "^3.1.3",
+    "rollup-plugin-serve": "^1.0.3",
+    "rollup-plugin-uglify": "^6.0.4"
   },
   "dependencies": {
     "cross-env": "^7.0.3"
@@ -48,5 +55,5 @@
   "bugs": {
     "url": "https://github.com/wangjiayan/one-svg-feth/issues"
   },
-  "gitHead": "632f5d11f5f7563f481ddd436b7b249bb18d3f52"
+  "gitHead": "9c65801790aacb709ca75d77002db5540d8d476a"
 }
