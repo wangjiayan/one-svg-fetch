@@ -1,6 +1,6 @@
 {
   "name": "one-svg-tool",
-  "version": "0.0.9-alpha.0",
+  "version": "0.0.10-alpha.0",
   "description": "> TODO: description",
   "author": "wangjiayan <765390818@qq.com>",
   "homepage": "https://github.com/wangjiayan/one-svg-feth#readme",
@@ -45,14 +45,14 @@
     "rollup-plugin-uglify": "^6.0.4"
   },
   "dependencies": {
-    "cross-env": "^7.0.3",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/plugin-proposal-decorators": "^7.15.4",
     "@babel/plugin-proposal-optional-chaining": "7.16.0",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/plugin-transform-typescript": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
-    "@babel/preset-typescript": "^7.12.1"
+    "@babel/preset-typescript": "^7.12.1",
+    "cross-env": "^7.0.3"
   },
   "bugs": {
     "url": "https://github.com/wangjiayan/one-svg-feth/issues"
