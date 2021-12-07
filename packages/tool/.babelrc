@@ -1,8 +1,11 @@
 {
   "presets": [
-    ["@babel/env"]
+    ["@babel/preset-env"]
   ],
   "plugins": [
-    "@babel/proposal-object-rest-spread"
+    "@babel/proposal-object-rest-spread",
+    ["@babel/plugin-transform-runtime", {
+      "regenerator": true
+    }]
   ]
 }

@@ -13,7 +13,6 @@ const resolveFile = function(filePath) {
 const babelOptions = {
   "presets": [
     '@babel/preset-env',
-    '@babel/preset-react'
   ],
   "babelHelpers": "bundled"
 }

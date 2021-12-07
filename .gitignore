@@ -6,7 +6,7 @@
 /.eslintcache
 /.umi
 /.umi-production
-
+/dist
 # Npm or Yarn
 node_modules
 npm-debug.log

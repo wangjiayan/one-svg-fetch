@@ -2,15 +2,18 @@
 /* eslint-disable prefer-template */
 const path = require('path')
 const fs = require('fs')
+const fse = require('fs-extra')
 const format = require('prettier-eslint')
 const processSvg = require('./processSvg')
 const { parseName } = require('./utils')
 const defaultStyle =  'stroke'
 
 
-function generateSvg(options){
+async function  generateSvg (options){
   const {outputDir,componentTpl:getElementCode} = options
-  const iconsMap = require(path.join(outputDir, 'data.json'))
+  // const iconsMap = require(path.join(outputDir, 'data.json'))
+  const iconsMap = await fse.readJson(path.join(outputDir, 'data.json'))
+  console.log('123',iconsMap)
   const srcDir = path.join(outputDir)
   const iconsDir = path.join(outputDir, 'icons')
 

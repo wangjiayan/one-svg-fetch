@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "clear": "rimraf ./dist && rimraf ./libs",
-    "fetch": "node bin/fetchSVG.js",
+    "icons": "node bin/fetchSVG.js",
     "build": "yarn clear && cross-env npx babel ./src --config-file ./.babelrc.js --out-dir dist --extensions .js",
     "dev": "rollup -w -c ./build/rollup.config.dev.js",
     "build:bundle": "sudo rm -rf dist && node_modules/.bin/rollup --c ./build/rollup.config.bundle.js"
