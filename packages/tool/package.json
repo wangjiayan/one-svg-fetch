@@ -18,7 +18,7 @@
     "url": "git+https://github.com/wangjiayan/one-svg-feth.git"
   },
   "scripts": {
-    "build:bundle": "sudo rm -rf dist && node_modules/.bin/rollup --c ./build/rollup.config.bundle.js",
+    "build:tool": "sudo rm -rf dist && node_modules/.bin/rollup --c ./build/rollup.config.bundle.js",
     "clear": "rimraf ./dist && rimraf ./libs",
     "compile:typings": "tsc --project ./tsconfig.typings.json --outDir ./libs --declaration",
     "compile:code": "yarn clear && cross-env npx babel ./src --config-file ./.babelrc --out-dir libs --extensions .js",

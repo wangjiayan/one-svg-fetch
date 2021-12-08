@@ -34,7 +34,7 @@ const fetchSvg = async (options)=>{
   console.log(`Exporting ${FIGMA_FILE_URL} components`)
   return client.file(fileId)
     .then(({ data }) => {
-      console.log('Processing response',data)
+      console.log('Processing response...')
       const components = {}
       function check(c) {
         if (c.type === 'COMPONENT') {

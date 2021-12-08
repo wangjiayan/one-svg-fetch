@@ -88,7 +88,7 @@ var fetchSvg = /*#__PURE__*/function () {
             console.log("Exporting ".concat(FIGMA_FILE_URL, " components"));
             return _context.abrupt("return", client.file(fileId).then(function (_ref2) {
               var data = _ref2.data;
-              console.log('Processing response');
+              console.log('Processing response...');
               var components = {};
 
               function check(c) {
@@ -285,6 +285,8 @@ function _processSvg() {
             }).then(removeSVGElement).then(function (svg) {
               return svg.replace(/([a-z]+)-([a-z]+)=/g, function (_, a, b) {
                 return "".concat(a).concat(CamelCase(b), "=");
+              }).replace(/([a-z]+):([a-z]+)=/g, function (_, a, b) {
+                return "".concat(a).concat(CamelCase(b), "=");
               });
             });
 
@@ -336,14 +338,12 @@ function _generateSvg() {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            outputDir = options.outputDir, getElementCode = options.componentTpl; // const iconsMap = require(path.join(outputDir, 'data.json'))
-
+            outputDir = options.outputDir, getElementCode = options.componentTpl;
             _context2.next = 3;
             return fsExtra.readJson(path.join(outputDir, 'data.json'));
 
           case 3:
             iconsMap = _context2.sent;
-            console.log('123', iconsMap);
             srcDir = path.join(outputDir);
             iconsDir = path.join(outputDir, 'icons');
             /**
@@ -464,7 +464,7 @@ function _generateSvg() {
               });
             });
 
-          case 14:
+          case 13:
           case "end":
             return _context2.stop();
         }
