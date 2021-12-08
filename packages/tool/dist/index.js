@@ -233,11 +233,8 @@ function optimize(svg) {
       convertShapeToPath: false
     }, {
       mergePaths: false
-    }, {
-      removeAttrs: {
-        attrs: '(fill|stroke.*)'
-      }
-    }, {
+    }, // { removeAttrs: { attrs: '(fill|stroke.*)' } },
+    {
       removeTitle: true
     }]
   });
@@ -283,7 +280,7 @@ function _processSvg() {
             .then(function (svg) {
               return svg.replace(/;/g, '');
             }).then(removeSVGElement).then(function (svg) {
-              return svg.replace(/([a-z]+)-([a-z]+)=/g, function (_, a, b) {
+              svg.replace(/([a-z]+)-([a-z]+)=/g, function (_, a, b) {
                 return "".concat(a).concat(CamelCase(b), "=");
               }).replace(/([a-z]+):([a-z]+)=/g, function (_, a, b) {
                 return "".concat(a).concat(CamelCase(b), "=");
