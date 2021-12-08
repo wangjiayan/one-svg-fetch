@@ -6,7 +6,7 @@ const PQueue = require('p-queue')
 require('dotenv').config()
 
 const fetchSvg = async (options)=>{
-  const {figmaToke:FIGMA_TOKEN, figmaFileUrl:FIGMA_FILE_URL } = options
+  const {figmaToke: FIGMA_TOKEN, figmaFileUrl: FIGMA_FILE_URL } = options
   for(const arg of process.argv.slice(2)) {
     const [param, value] = arg.split('=')
     if(options[param]) {
@@ -34,7 +34,7 @@ const fetchSvg = async (options)=>{
   console.log(`Exporting ${FIGMA_FILE_URL} components`)
   return client.file(fileId)
     .then(({ data }) => {
-      console.log('Processing response')
+      console.log('Processing response',data)
       const components = {}
       function check(c) {
         if (c.type === 'COMPONENT') {

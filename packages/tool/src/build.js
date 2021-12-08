@@ -11,9 +11,7 @@ const defaultStyle =  'stroke'
 
 async function  generateSvg (options){
   const {outputDir,componentTpl:getElementCode} = options
-  // const iconsMap = require(path.join(outputDir, 'data.json'))
   const iconsMap = await fse.readJson(path.join(outputDir, 'data.json'))
-  console.log('123',iconsMap)
   const srcDir = path.join(outputDir)
   const iconsDir = path.join(outputDir, 'icons')
 
