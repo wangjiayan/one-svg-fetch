@@ -283,7 +283,7 @@ function _processSvg() {
             .then(function (svg) {
               return svg.replace(/;/g, '');
             }).then(removeSVGElement).then(function (svg) {
-              svg.replace(/([a-z]+)-([a-z]+)=/g, function (_, a, b) {
+              return svg.replace(/([a-z]+)-([a-z]+)=/g, function (_, a, b) {
                 return "".concat(a).concat(CamelCase(b), "=");
               }).replace(/([a-z]+):([a-z]+)=/g, function (_, a, b) {
                 return "".concat(a).concat(CamelCase(b), "=");
